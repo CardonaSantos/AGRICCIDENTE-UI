@@ -48,7 +48,7 @@ import CreateVentaCuotaForm from "./Pages/VentaCuotas/CreateVentaCuotas";
 import ContratoCredito from "./Pages/VentaCuotas/ContratoCredito";
 import EditPlaceHolder from "./Pages/VentaCuotas/EditPlaceHolder";
 import CuotasPage from "./components/PDF/Cuotas/CuotasPage";
-import { ProtectRSuperAdmin } from "./components/Auth/ProtectedRSuperAdmin";
+// import { ProtectRSuperAdmin } from "./components/Auth/ProtectedRSuperAdmin";
 import { ProtectRouteAdmin } from "./components/Auth/ProtectRouteAdmin";
 import DashboardEmpleado from "./Pages/Dashboard/DashboardEmpleado";
 import RepairOrderForm from "./Pages/Reparaciones/RepairOrder";
@@ -166,9 +166,9 @@ function App() {
             <Route
               path="/add-sucursal"
               element={
-                <ProtectRSuperAdmin>
-                  <CreateSucursal />
-                </ProtectRSuperAdmin>
+                // <ProtectRSuperAdmin>
+                <CreateSucursal />
+                // </ProtectRSuperAdmin>
               }
             />
 
