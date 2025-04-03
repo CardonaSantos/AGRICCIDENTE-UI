@@ -271,17 +271,7 @@ export default function Layout2({ children }: LayoutProps) {
               {/* vitaFertil-universal-forma:pachon, normal */}
               {/* Sección derecha: Toggle de modo, notificaciones y menú de usuario */}
               <div className="flex items-center space-x-2">
-                <div className="">
-                  <Link to={"/crm"}>
-                    <Button
-                      className="underline font-semibold dark:text-white "
-                      size={"icon"}
-                      variant={"link"}
-                    >
-                      CRM
-                    </Button>
-                  </Link>
-                </div>
+                <div className=""></div>
 
                 <div className=" ">
                   <ModeToggle />
