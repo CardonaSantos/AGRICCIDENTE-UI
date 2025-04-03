@@ -1,5 +1,3 @@
-// import React from "react";
-import { motion } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { toast } from "sonner";
+import { CalendarIcon, FileText, X } from "lucide-react";
 const VITE_CRM_API_URL = import.meta.env.VITE_CRM_API_URL;
 
 interface DataGenerateFactura {
@@ -107,55 +106,59 @@ function FacturaGenerateDialog({
   console.log("el objeto es: ", dataGenerarFactura);
 
   return (
-    <div className="container mx-auto py-6">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <Dialog open={openGenerarFactura} onOpenChange={setOpenGenerarFactura}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle className="text-center">
-                Generar factura de servicio de internet
-              </DialogTitle>
-              <DialogDescription className="text-center">
-                Genere una factura pasada o futura
-              </DialogDescription>
-            </DialogHeader>
-            <div className="">
-              <Label htmlFor="fecha" className="mr-2">
-                Mes de pago
-              </Label>
-              <DatePicker
-                id="fecha"
-                locale={es}
-                selected={fechaSeleccionada || null}
-                onChange={handleDateChange}
-                selectsStart
-                placeholderText="Fecha inicial"
-                className="h-9 w-full min-w-[140px] rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                dateFormat="MM/yyyy"
-                isClearable={true}
-              />
-            </div>
-            <div className="flex gap-2">
-              <Button className="w-full" variant={"destructive"}>
-                Cerrar
-              </Button>
+    <Dialog open={openGenerarFactura} onOpenChange={setOpenGenerarFactura}>
+      <DialogContent className="max-w-md">
+        <DialogHeader className="pb-4 border-b">
+          <DialogTitle className="text-center flex items-center justify-center gap-2">
+            <FileText className="h-5 w-5 text-primary" />
+            <span>Generar factura de servicio de internet</span>
+          </DialogTitle>
+          <DialogDescription className="text-center pt-2">
+            Genere una factura pasada o futura
+          </DialogDescription>
+        </DialogHeader>
 
-              <Button
-                variant={"outline"}
-                className="w-full"
-                onClick={handleSubmit}
-              >
-                Generar Factura
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </motion.div>
-    </div>
+        <div className="py-4 space-y-1.5">
+          <Label htmlFor="fecha" className="text-sm font-medium">
+            Mes de pago
+          </Label>
+          <div className="relative">
+            <DatePicker
+              id="fecha"
+              locale={es}
+              selected={fechaSeleccionada || null}
+              onChange={handleDateChange}
+              selectsStart
+              placeholderText="Seleccione mes y año"
+              className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring pr-10"
+              dateFormat="MM/yyyy"
+              isClearable={true}
+              showMonthYearPicker
+            />
+            <CalendarIcon className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
+          </div>
+        </div>
+
+        <div className="flex gap-3 pt-2">
+          <Button
+            variant="outline"
+            className="w-full flex items-center justify-center gap-2"
+            onClick={() => setOpenGenerarFactura(false)}
+          >
+            <X className="h-4 w-4" />
+            <span>Cerrar</span>
+          </Button>
+
+          <Button
+            className="w-full flex items-center justify-center gap-2"
+            onClick={handleSubmit}
+          >
+            <FileText className="h-4 w-4" />
+            <span>Generar Factura</span>
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 

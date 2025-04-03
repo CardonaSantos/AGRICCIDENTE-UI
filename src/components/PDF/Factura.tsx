@@ -7,7 +7,7 @@ import {
   Document,
   StyleSheet,
 } from "@react-pdf/renderer";
-import logo from "../../assets/LOGONOVA.jpg";
+import logo from "../../assets/AgroLogo.png";
 import { VentaHistorialPDF } from "@/Types/PDF/VentaHistorialPDF";
 import dayjs from "dayjs";
 import "dayjs/locale/es"; // Importa el idioma español

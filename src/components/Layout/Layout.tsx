@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { ModeToggle } from "../mode-toggle";
-import nv2 from "@/assets/LOGOPNG.png";
+import nv2 from "@/assets/AgroLogo.png";
 import nv3 from "@/assets/LogoCrmPng.png";
 
 import {
@@ -242,9 +242,6 @@ export default function Layout2({ children }: LayoutProps) {
     }
   }, [socket]);
 
-  const classesCrmLogo = "h-14 w-14 md:h-16 md:w-16";
-  const classesNova = "h-16 w-16 md:h-10 md:w-16";
-
   return (
     <div className="flex min-h-screen">
       <SidebarProvider>
@@ -259,9 +256,8 @@ export default function Layout2({ children }: LayoutProps) {
               <div className="flex items-center space-x-2">
                 <Link to={isCrmLocation ? "/crm" : "/"}>
                   <img
-                    className={`${
-                      isCrmLocation ? classesCrmLogo : classesNova
-                    }`} // Mobile: 12x12, Medium+: 16x28
+                    className={`h-28 w-28
+                    `}
                     src={isCrmLocation ? nv3 : nv2}
                     alt="Logo"
                   />

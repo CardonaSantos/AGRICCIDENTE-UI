@@ -78,6 +78,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import FacturaGenerateDialog from "./Factura/FacturaGenerateDialog";
+import GenerateFacturas from "./Factura/GenerateFacturas";
 
 dayjs.extend(utc);
 dayjs.extend(localizedFormat);
@@ -144,6 +145,8 @@ export default function CustomerDetails() {
     facturaInternet: [],
     clienteServicio: [],
   });
+
+  // AJUSTAR EL SERVICIO DE GENERAR UNA FACTURA, QUE LA FECHA DE VENCIMIENTO, COINCIDA CON EL MES ASIGNADO, Y CREAREMOS OTROS
 
   const getClienteDetails = async () => {
     try {
@@ -255,6 +258,8 @@ export default function CustomerDetails() {
 
   console.log("El cliente es: ", cliente);
   const [openGenerarFactura, setOpenGenerarFactura] = useState(false);
+
+  const [openGenerateFacturas, setOpenGenerateFacturas] = useState(false);
 
   return (
     <div className="container mx-auto  py-6">
@@ -824,7 +829,9 @@ export default function CustomerDetails() {
 
                           {/* Segunda sección */}
                           <DropdownMenuGroup>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => setOpenGenerateFacturas(true)}
+                            >
                               Generar Varias facturas
                             </DropdownMenuItem>
                           </DropdownMenuGroup>
@@ -941,8 +948,8 @@ export default function CustomerDetails() {
                           {cliente.facturaInternet
                             .sort(
                               (a, b) =>
-                                new Date(a.fechaEmision).getDate() -
-                                new Date(b.fechaEmision).getDate()
+                                new Date(b.fechaEmision).getTime() -
+                                new Date(a.fechaEmision).getTime()
                             )
                             .map((factura) => (
                               <React.Fragment key={factura.id}>
@@ -1121,6 +1128,14 @@ export default function CustomerDetails() {
         setOpenGenerarFactura={setOpenGenerarFactura}
         //funcion enviar
         // handleGenerateFactura={handleGenerateFactura}
+        clienteId={cliente.id}
+        getClienteDetails={getClienteDetails}
+      />
+
+      <GenerateFacturas
+        openGenerateFacturas={openGenerateFacturas}
+        setOpenGenerateFacturas={setOpenGenerateFacturas}
+        //
         clienteId={cliente.id}
         getClienteDetails={getClienteDetails}
       />
