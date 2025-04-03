@@ -256,9 +256,9 @@ function App() {
             <Route
               path="/sucursal"
               element={
-                <ProtectRouteAdmin>
-                  <Sucursales />
-                </ProtectRouteAdmin>
+                // <ProtectRouteAdmin>
+                <Sucursales />
+                // </ProtectRouteAdmin>
               }
             />
 
